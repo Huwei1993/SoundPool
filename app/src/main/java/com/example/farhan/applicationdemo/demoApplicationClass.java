@@ -15,7 +15,7 @@ public class demoApplicationClass extends Application {
 
     AudioAttributes globalAudioAttributes;
     AudioAttributes.Builder globalAudioAttributesBuilder;
-
+    int playingId;
     AudioManager audioManager;
 
     float gCurVolume=3, gMaxVolume, gVolume=3;
@@ -36,7 +36,7 @@ public class demoApplicationClass extends Application {
         globalSoundIDCoin = globalSoundPool.load(this,R.raw.gamecoin,1);
     }
     protected void gPlaySound(){
-        globalSoundPool.play(globalSoundIDCoin,gVolume,gVolume,1,-1, (float) 0.5);
+        playingId = globalSoundPool.play(globalSoundIDCoin, gVolume, gVolume, 1, -1, (float) 2.0);
     }
     protected void gVolumeSounds() {
         audioManager =(AudioManager) getSystemService(AUDIO_SERVICE);
@@ -59,6 +59,6 @@ public class demoApplicationClass extends Application {
 
 
     public void gStop() {
-        globalSoundPool.stop(globalSoundIDCoin);
+        globalSoundPool.stop(playingId);
     }
 }
